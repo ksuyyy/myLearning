@@ -1,0 +1,66 @@
+
+ .dws {                            /*Выравнивание*/
+ 	position: absolute;
+ 	top: 50%;
+ 	left: 50%;
+ 	transform: translate(-50%, -50%);
+
+}
+ .button {
+    color: ForestGreen;
+    border: 3px solid DarkGreen;
+    font-size: 30px;
+    font-family: Arial; sans-serif;
+    text-decoration: none;      	/*Убирается подчеркивание (т.к. кнопка создана через ссылку)*/    
+    text-transform: uppercase;
+ 	width: 250px;
+ 	height: 60px;
+ 	display: block;                 /*Изменение поведения ссылки, на поведение блочного элемента (т.к. ссылка встроенный эл-т и текущие параметры не применяются)*/
+ 	text-align: center;				/*Центрирование текста по горизонтали*/
+ 	line-height: 60px;				/*Задаются отступы (центрирование) текста по вертикали*/
+ 	position: relative;				/*Позиционирование псевдоэлементов относительно создаваемой кнопки*/
+ 	transition: .5s; 				/*Анимирование появления, для плавности анимирования заполнения блока t = 0.5s*/
+ 	overflow: hidden;				/*Скрытие за пределами кнопки*/
+ }
+.button::before,					/*Описание Псевдоэлементов, befor - первый блик, after - второй блик*/
+.button::after {
+	position: absolute;				/*Позиционирование псевдоэлементов абсолютно к кнопке, к которой он находится*/
+	content: '';
+	width: 100%;
+	height: 100%;
+	background: ForestGreen;
+	top: 0;
+	left: -100%;
+	opacity: .5;					/*Прозрачность (0 - прозрачный, 0.5 - полупрозрачный, 1 - непрозрачный)*/
+	transition: .3s;
+	z-index: -1;					/*Для выведения текста вперед при наложении псевдоэлемента*/
+}
+.button::after {
+	opacity: 1;
+	transition-delay: .1s;			/*Задается задержка при анимации*/
+}
+.button:hover{						/*Изменение цвета шрифта при наведении*/
+	color: #fff;
+}
+.button:hover::before,				/*Создание движениея (hover). При наведении на кнопку пседвоэлемент занимает область кнопки*/
+.button:hover::after {
+	left: 0;
+}
+
+
+.pulse {
+	background-color: #00FA9A;
+	border-radius: 50%;
+	animation: pulse 0.7s ease-out; /*Пульсирующий эффект при появлении: pulse - название ключевого кадра, время анимации, свойство easy-out (вначале аним проходит быстрее, к концу плавно замедл)*/
+	transform: scale(0);
+	position: absolute;
+
+}
+@keyframes pulse {
+to {
+	transform: scale(2);
+	background-color: #fff;
+	opacity: 0;
+}
+}
+
